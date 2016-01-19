@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <!--Import materialize.css-->
+      <link href="../../main/css/icons.css" rel="stylesheet">
+	  <link href="../../main/css/materialize.min.css" rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="../../main/css/notifIt.css">
+	  <link rel="stylesheet" type="text/css" href="../../main/css/datatables/jquery.dataTables.min.css">
+	  <link rel="stylesheet" type="text/css" href="../../main/css/datatables/dt_responsive.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta charset="UTF-8" />
+       <meta name="author" content="Yerson Morales" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+       <script type="text/javascript" src="../../main/js/jquery.min.js"></script>
+       <script src="../../js/prin.js"></script>
+	  <script src="controlador.js"></script>
+    </head>
+    <body>
+    	<section>
+	    		<nav>
+	            <div class="nav-wrapper">
+	              <a href="#!" class="brand-logo">Mi rutero</a>
+	              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">reorder</i></a>
+	              <ul class="side-nav" id="mobile-demo">
+	              	<li class="no-padding"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">blur_on</i><span style="font-weight:bold;font-size:20px;color:#085F9D;">DCS Dealer</span></a><hr></li>
+	              	<li class="no-padding">
+			          <ul class="collapsible collapsible-accordion">
+			            <li class="bold" style="left:0px;" id="he_me"><a href="../../welcome.html" class="collapsible-header waves-effect waves-celeste"><i class="material-icons blueicon left md-36">home</i>&nbsp;Inicio</a></li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">card_travel</i>&nbsp;Mis Productos</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../realizar_pedido/realizar_pedido.html"><i class="material-icons blueicon left tiny">swap_horiz</i>Solicitar Producto</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header waves-effect waves-celeste"><i class="material-icons blueicon left md-36">supervisor_account</i>&nbsp;Mis Clientes</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../gestor_puntos/ges_puntos.html"><i class="material-icons blueicon left tiny">business</i> Crear Puntos</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">picture_as_pdf</i>&nbsp;Mis Reportes</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../mi_inventario/inventario.html"><i class="material-icons blueicon left tiny">content_paste</i> Mi Inventario</a></li>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../mis_ventas/mis_ventas.html"><i class="material-icons blueicon left tiny">redeem</i> Mis Ventas</a></li>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="mi_rutero.html"><i class="material-icons blueicon left tiny">today</i> Mi Rutero</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">shopping_cart</i>&nbsp;Mis Ventas</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" class="collapsible-header  waves-effect waves-celeste" href="../venta_as/venta_asesor.html"><i class="material-icons blueicon left tiny">account_circle</i> Visita PDV</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  blueicon waves-effect waves-celeste"><i class="material-icons blueicon left md-36">group_add</i>&nbsp;Vender a Cliente Final</a>
+			                  	<div class="collapsible-body">
+					                <ul>
+					                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../venta_dir_sim/venta_dir_sim.html"><i class="material-icons blueicon left tiny">sim_card</i> Venta Simcard</a></li>
+					                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../venta_dir_pro/venta_dir_pro.html"><i class="material-icons blueicon left tiny">phone_android</i> Venta Producto</a></li>
+					                </ul>
+					              </div>
+				        </li>
+			            <li class="bold" id="he_me"><a onclick="javascript:salir();" class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">adjust</i>&nbsp;Salir</a>
+			          </ul>
+			        </li>
+	              </ul>
+	            </div>
+	          </nav>
+       </section>
+       
+       <div class="container">
+	       	<div class="row">  
+			    <div class="col s12 m6">
+			      <div class="card z-depth-2">
+			      	<form name="form" method="post" id="frm_p" >
+			      	<div class="card-content center-align">
+			            <div class="row">
+			            	 <div class="input-field center-align col s6">
+					          <input id="pto_idpos" is-data="1,50,0" name="pto_idpos" type="text" OnKeypress="return validar_numeros(event)" >
+					          <label for="pto_idpos">IDPOS: </label>
+					        </div>
+					        <div class="input-field center-align col s6">
+					          <input id="pto_name" is-data="1,25,0" name="pto_name" type="text" >
+					          <label for="pto_name">Nombre: </label>
+					        </div>
+					        <div class="input-field col s6">
+							    <select id="pto_circ">
+							      <option value="">Seleccionar..</option>
+							    </select>
+							    <label>Circuito: </label>
+							</div>
+							<div class="input-field col s6">
+							    <select id="pto_ruta">
+							      <option value="">Seleccionar..</option>
+							    </select>
+							    <label>Ruta: </label>
+							</div>
+							<div class="input-field col s6">
+							    <select id="pto_est_vis">
+								      <option value="">Seleccionar..</option>
+								      <option value = "1">Visitado</option>
+	                    			  <option value = "0">Sin Visitar</option>
+							    </select>
+							    <label>Estado Visita: </label>
+							</div>
+							<div class="input-field col s6">
+							    <select id="pto_dias">
+								      	<option value="">Seleccionar..</option>
+								      	<option value = "lu">Lunes</option>
+					                    <option value = "ma">Martes</option>
+					                    <option value = "mi">Miércoles</option>
+					                    <option value = "ju">Jueves</option>
+					                    <option value = "vi">Viernes</option>
+					                    <option value = "sa">Sábado</option>
+					                    <option value = "do">Domingo</option>
+							    </select>
+							    <label>Día Visita: </label>
+							</div>
+			            </div>
+			            <button type="submit" id="bt_usu_search" class="waves-effect waves-light btn blue darken-3 but"><i class="material-icons right">search</i> Buscar</button>
+			            </div>
+			        </form>
+			       </div>
+			  </div>
+			</div>
+			<div class="row center-align" id="while" style="display:none;">
+           		<div class="preloader-wrapper active">
+				    <div class="spinner-layer spinner-blue-only">
+				      <div class="circle-clipper left">
+				        <div class="circle"></div>
+				      </div><div class="gap-patch">
+				        <div class="circle"></div>
+				      </div><div class="circle-clipper right">
+				        <div class="circle"></div>
+				      </div>
+				    </div>
+				  </div>
+			  </div>
+			<div class="row" id="consulta" style="display:none;">  
+			    <div class="col s12 m6">
+			      <div class="card z-depth-2">
+			      	<div class="card-content center-align">
+		            	<span class="card-title blue-text text-darken-3"></span>
+			            	<br>
+			            		<table id="t_points" width="100%" border='0' align='center' class="striped centered">
+						             <thead>
+						                <tr>
+						                <th align='center'>ID POS</th>
+						                <th align='center'>Direccion</th>
+						                <th align='center' class="all">Nombre </th>
+						                <th align='center'>Departamento</th>
+						                <th align='center'>Ciudad</th>
+						                <th align='center'>Circuito </th>
+						                <th align='center'>Ruta</th>
+						                <th align='center'>Telefono</th>
+						                <th align='center'>Dias</th>
+						                <th align='center' class="all">Visitado</th>
+						                <th align='center'>Hora_Vis</th>
+						                </tr>
+						             </thead>
+						           </table>
+			        	</div>
+			       </div>
+			  </div>
+			</div>
+			
+       </div>
+       
+       
+       
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="../../main/js/main.js"></script>
+    <script type="text/javascript" src="../../main/css/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../../main/css/datatables/dt_responsive.js"></script>
+     <script type="text/javascript" src="../../main/js/materialize.min.js"></script>
+     <script type="text/javascript" src="../../main/js/notifIt.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $(".button-collapse").sideNav();
+    })
+    </script>
+  </body>
+</html>

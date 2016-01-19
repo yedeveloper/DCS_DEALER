@@ -1,0 +1,25 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.dcsdealer.android"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.dcsdealer.android"
+        },
+        "com.red_folder.phonegap.plugin.backgroundservice.sample": {
+            "PACKAGE_NAME": "com.dcsdealer.android"
+        }
+    },
+    "dependent_plugins": {
+        "com.red_folder.phonegap.plugin.backgroundservice": {
+            "PACKAGE_NAME": "com.dcsdealer.android"
+        }
+    }
+}

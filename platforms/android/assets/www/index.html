@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>DCS Login</title>
+        <meta name="author" content="Yerson Morales" />
+        <link rel="stylesheet" type="text/css" href="main/css/style.css" />
+        <link href="main/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="main/css/font-awesome.min.css" rel="stylesheet">
+        <link href="main/css/animate.min.css" rel="stylesheet">
+    
+        <!-- Custom styling plus plugins -->
+        <link href="main/css/custom.css" rel="stylesheet">
+        <link href="main/css/green.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="main/css/jquery.loading-indicator.css">
+        <link rel="stylesheet" type="text/css" href="main/css/notifIt.css">
+		<!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+    </head>
+    <body>
+        <div class="container">
+			<header><div class="titulo">DCS DEALER</div></header>
+			<section class="main">
+            	<div id="form_log">
+				<form class="form-1" id="form_login" method="post" action="#">
+					
+                    <input type="text" id="usuario"  name="login" placeholder="Usuario" class="inputbox">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" class="inputbox2">
+                    
+					
+					<button type="submit" name="submit" class="button_logueo">INGRESAR</button>
+					
+				</form>
+                 <br><br>
+                 <a href="#" id="recover_pass" class="recover">Recuperar Contraseña</a>
+                 </div>
+                  <div id="form_reco" style="display:none">
+                     <form class="form-1" name="frm_recover" id="frm_recover" >
+                         <input type="email" name="correo" id="correo" required placeholder="Ingresar Correo" class="inputbox" style="border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-bottom: 0px"/>
+                         <button type="submit" name="btn_enviar" class="button_logueo">ENVIAR</button>
+                         <button type="button" name="btn_cancel" id="btn_cancel" class="button_logueo_cancel">CANCELAR</button>
+                     </form>
+                 </div>
+			</section>
+			
+			<!--VENTANA NOTIFICACIONES-->
+				<div class="modal fade" role="dialog" style="margin:0 auto;">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="titNf"></h4>
+				      </div>
+				      <div class="modal-body">
+				        <h4 id="contNf"></h4>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+				      </div>
+				    </div><!-- /.modal-content -->
+				  </div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+        </div>
+        <script src="main/js/jquery.min.js"></script>
+        <script src="js/index.js"></script>
+        <script src="controlador.js"></script>
+        <script src="main/js/bootstrap.min.js"></script>
+        <script src="cordova.js"></script>
+        <script src="cordova_plugins.js"></script>
+        
+		<script src="main/js/modernizr.custom.63321.js"></script>
+        <script type="text/javascript" src="main/js/notifIt.js"></script>
+		<script type="text/javascript" src="main/js/jquery.loading-indicator.js"></script>
+    </body>
+</html>

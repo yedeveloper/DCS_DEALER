@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <!--Import materialize.css-->
+      <link href="../../main/css/icons.css" rel="stylesheet">
+	  <link href="../../main/css/materialize.min.css" rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="../../main/css/notifIt.css">
+	  <link rel="stylesheet" type="text/css" href="../../main/css/datatables/jquery.dataTables.min.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta charset="UTF-8" />
+       <meta name="author" content="Yerson Morales" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+       <script type="text/javascript" src="../../main/js/jquery.min.js"></script>
+       <script src="../../js/prin.js"></script>
+	  <script src="controlador.js"></script>
+    </head>
+    <body>
+    	<section>
+	    		<nav>
+	            <div class="nav-wrapper">
+	              <a href="#!" class="brand-logo">Ventas</a>
+	              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">reorder</i></a>
+	              <ul class="side-nav" id="mobile-demo">
+	              	 <li class="no-padding"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">blur_on</i><span style="font-weight:bold;font-size:20px;color:#085F9D;">DCS Dealer</span></a><hr></li>
+	              	<li class="no-padding">
+			          <ul class="collapsible collapsible-accordion">
+			            <li class="bold" style="left:0px;" id="he_me"><a href="../../welcome.html" class="collapsible-header waves-effect waves-celeste"><i class="material-icons blueicon left md-36">home</i>&nbsp;Inicio</a></li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">card_travel</i>&nbsp;Mis Productos</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../realizar_pedido/realizar_pedido.html"><i class="material-icons blueicon left tiny">swap_horiz</i>Solicitar Producto</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header waves-effect waves-celeste"><i class="material-icons blueicon left md-36">supervisor_account</i>&nbsp;Mis Clientes</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../gestor_puntos/ges_puntos.html"><i class="material-icons blueicon left tiny">business</i> Crear Puntos</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">picture_as_pdf</i>&nbsp;Mis Reportes</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../mi_inventario/inventario.html"><i class="material-icons blueicon left tiny">content_paste</i> Mi Inventario</a></li>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../mis_ventas/mis_ventas.html"><i class="material-icons blueicon left tiny">redeem</i> Mis Ventas</a></li>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../mi_rutero/mi_rutero.html"><i class="material-icons blueicon left tiny">today</i> Mi Rutero</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">shopping_cart</i>&nbsp;Mis Ventas</a>
+			              <div class="collapsible-body">
+			                <ul>
+			                  <li><a class="collapsible-header  waves-effect waves-celeste" href="venta_asesor.html"><i class="material-icons blueicon left tiny">account_circle</i> Visita PDV</a></li>
+			                </ul>
+			              </div>
+			            </li>
+			            <li class="bold" id="he_me"><a class="collapsible-header  blueicon waves-effect waves-celeste"><i class="material-icons blueicon left md-36">group_add</i>&nbsp;Vender a Cliente Final</a>
+			                  	<div class="collapsible-body">
+					                <ul>
+					                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../venta_dir_sim/venta_dir_sim.html"><i class="material-icons blueicon left tiny">sim_card</i> Venta Simcard</a></li>
+					                  <li><a class="collapsible-header  waves-effect waves-celeste" href="../venta_dir_pro/venta_dir_pro.html"><i class="material-icons blueicon left tiny">phone_android</i> Venta Producto</a></li>
+					                </ul>
+					              </div>
+				        </li>
+			            <li class="bold" id="he_me"><a onclick="javascript:salir();" class="collapsible-header  waves-effect waves-celeste"><i class="material-icons blueicon left md-36">adjust</i>&nbsp;Salir</a>
+			          </ul>
+			        </li>
+	              </ul>
+	            </div>
+	          </nav>
+       </section>
+       
+       <div class="container">
+        <div class="row" id="div_consulta">
+	        <div class="col s12 m6">
+	          <div class="card z-depth-2">
+	            <div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Consultar Punto</span>
+	            	<div class="black-text">
+	            		<form name="frmventa" method="post" id="frmventa">
+					      <div class="row">
+					        <div class="input-field center-align col s9 offset-s1">
+					          <input id="punto" name="punto" type="text" required>
+					          <label for="id_pos">ID POS</label>
+					        </div>
+					        <div class="col s2 left-align">
+					        	<br><i class="small material-icons blueicon" id="consulta_punto">search</i>
+					        </div>
+					      </div>
+					      <button class="btn waves-effect waves-light blue darken-3" type="submit" name="action">Buscar<i class="material-icons right">send</i></button>
+					 	</form>	
+	            	</div>
+				 </div>
+	          </div>
+	        </div>
+	      </div>
+	      <div class="row" id="div_datos_punto" style="display:none;">
+		    <div class="col s12 m6">
+		      <div class="card z-depth-2">
+	            <div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Información del Punto</span>
+		            	<br><div class="black-text">
+		            		<p id="tit">ID POS:</p>
+					        <div class="chip m6">
+							    	<span id="n_idpos"></span> 
+							</div><br><br>
+							<p id="tit">Razón Social:</p>
+							<div class="chip m6">
+							     <span id="n_razon_social"></span> 
+							</div><br><br>
+							<p id="tit">Circuito:</p>
+							<div class="chip m6">
+							    	<span id="cir_punto"></span> 
+							</div><br><br>
+							<p id="tit">Ruta:</p>
+							<div class="chip m6">
+							    	<span id="ruta_punto"></span> 
+							</div><br><br>
+							<p id="tit">Dirección:</p>
+							<div class="chip m6">
+							    	<span id="dir_punto"></span> 
+							</div><br><br>
+							
+							<div class="center-btn">
+							          <button class="waves-effect waves-light btn green but" id="btn_vender"><i class="tiny material-icons right">shopping_cart</i>Venta</button><br>
+							          <button class="waves-effect waves-light btn blue darken-3 but" id="btn_vistar"><i class="medium material-icons right">assignment_ind</i>No Venta</button><br>
+							          <button class="waves-effect waves-light btn red darken-1 but" id="btn_volver_pos"><i class="material-icons right">replay</i>Volver</button>
+							</div>
+							
+		         		</div>
+		        </div>
+		       </div>
+		  </div>
+		</div>
+		
+		<div class="row" id="acciones_venta_asesor" style="display:none;">
+		    <div class="col s12 m6">
+		      <div class="card z-depth-2">
+	            <div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Opciones de Venta</span>
+		            	<br>
+		            	<div class="black-text">
+		            		<div>
+		            			<button id="delbtn_trans_mcoin" class="waves-effect waves-light btn grey but"><i class="tiny material-icons right">repeat</i> Transferir MCOIN </button>
+		            		</div>
+		            		<div>
+		            			<button id="btn_venta_sim" class="waves-effect waves-light btn grey but"><i class="tiny material-icons right">subtitles</i> Venta Simcard</button>
+		            		</div>
+		            		<div>
+		            			<button id="delbtn_venta_producto" class="waves-effect waves-light btn grey but" ><i class="tiny material-icons right">settings_cell</i> Venta Producto</button>
+		            		</div>
+		            		<div>
+		            			<button id="btn_finaliza_venta" class="waves-effect waves-light btn green but"><i class="tiny material-icons right">shopping_cart</i> Finalizar Venta</button>
+		            		</div>
+		            		<div>
+		            			 <button id="btn_cancelar_venta" class="waves-effect waves-light btn red darken-1 but"><i class="tiny material-icons right">clear</i> Cancelar Venta</button>
+		            		</div>
+		         		</div>
+		        </div>
+		       </div>
+		  </div>
+		</div>
+		
+		  <div class="row" id="div_venta_sim" style="display:none;">
+		    <div class="col s12 m6">
+		      <div class="card z-depth-2">
+	            <div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Venta de Simcard</span>
+		            	<br>
+					    <div class="row">
+					        <div class="input-field col s12">
+							    <select id="t_venta_sim">
+							      <option value="">Seleccionar..</option>
+							      <option value="1">Paquete</option>
+							      <option value="2">Unidad</option>
+							    </select>
+							    <label>Tipo Venta: </label>
+					        </div>
+					    </div>
+					    <button id="can_vs" class="waves-effect waves-light btn red darken-1"> Volver</button>
+		        </div>
+		       </div>
+		  </div>
+		</div>
+		<div class="row" id="sim_venta_paquete" style="display:none;">
+		    <div class="col s12 m6">
+		      <div class="card z-depth-2">
+	            <div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Venta por Paquete</span>
+		            	<br>
+		            <div class="input-field col s12">
+					    <select id="t_venta_paq_sel_paquete">
+					      <option value="">Seleccionar..</option>
+					    </select>
+					    <label>Seleccione Paquete: </label>
+					</div>
+					<div id="venta_sim_simcard_paquete" class="form-group col-md-8 col-md-offset-2" style="display:none;">
+                       <table id="t_venta_simcard_paquete" class="bordered">
+                         <tbody></tbody>
+                       </table>
+                     </div>
+                     <button id="Can_Venta_Sim_Paq" class="waves-effect waves-light btn red darken-1 but"><i class="tiny material-icons right">clear</i> Cancelar</button>
+			         <button id="Enviar_Venta_Sim_Paq" class="waves-effect waves-light btn blue darken-3 but"><i class="material-icons right">send</i> Enviar</button>
+		        </div>
+		       </div>
+		  </div>
+		</div>
+		<div class="row" id="sim_venta_unidad" style="display:none;">
+		    <div class="col s12 m6">
+		      <div class="card z-depth-2">
+	            <div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Venta por Unidad</span>
+		            	<br>
+		            <div class="input-field col s12">
+					    <select id="t_venta_sim_sel_paquete">
+					      <option value="">Seleccionar..</option>
+					    </select>
+					    <label>Seleccione Paquete: </label>
+					</div>
+					<div class="input-field col s12">
+					    <select id="t_venta_sim_sel_referencia">
+					      <option value="">Seleccionar..</option>
+					    </select>
+					    <label>Seleccione Referencia: </label>
+					</div>
+					<div id="venta_sim_simcard" style="display:none;">
+                       <table id="t_venta_simcard" class="bordered">
+                         <thead>
+                           <tr>
+                             <th>Seleccionar</th>
+                             <th>Simcard</th>
+                           </tr>
+                         </thead>
+                         <tbody></tbody>
+                       </table>
+                     </div>
+                     <button id="Can_Venta_Sim_Un" class="waves-effect waves-light btn red darken-1 but"><i class="tiny material-icons right">clear</i> Cancelar</button>
+			         <button id="Enviar_Venta_Sim_Un" class="waves-effect waves-light btn blue darken-3 but"><i class="material-icons right">send</i> Enviar</button>
+		        </div>
+		       </div>
+		  </div>
+		</div>
+		
+		<div class="row" id="div_venta_producto" style="display:none;">
+		    <div class="col s12 m6">
+		      <div class="card z-depth-2">
+	            <div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Venta de Producto</span>
+		            	<br>
+		            <div class="input-field col s12">
+					    <select id="select_referencia_producto">
+					      <option value="">Seleccionar..</option>
+					    </select>
+					    <label>Seleccione Referencia: </label>
+					</div>
+					<div id="venta_producto" class="form-group col-md-8 col-md-offset-2" style="display:none;">
+                       <table id="t_venta_producto" class="bordered striped">
+                         <thead>
+                           <tr>
+                             <th></th>
+                             <th>IMEI</th>
+                           </tr>
+                         </thead>
+                         <tbody></tbody>
+                       </table>
+		             </div><br>
+                     <button id="Can_Venta_Producto" class="waves-effect waves-light btn red darken-1 but"><i class="tiny material-icons right">clear</i> Cancelar</button>
+			         <button id="Enviar_Venta_Producto" class="waves-effect waves-light btn blue darken-3 but"><i class="material-icons right">send</i> Enviar</button>
+		        </div>
+		       </div>
+		  </div>
+		</div>
+		
+		<div class="row" id="con_pto" style="display:none;">  
+		    <div class="col s12 m6">
+		      <div class="card z-depth-2">
+		      	<form method="post" id="frm_con_punto" action="#">
+		      	<div class="card-content center-align">
+	            	<span class="card-title blue-text text-darken-3">Consultar Punto</span>
+		            	<br>
+		            <div class="row">
+		            	 <div class="input-field center-align col s6">
+				          <input id="nombre_con_pt" data-name="Nombre" name="nombre_con_pt" is-data="4,25,1" type="text" >
+				          <label for="nombre_con_pt">Nombre: </label>
+				        </div>
+				        <div class="input-field center-align col s6">
+				          <input id="nit_con_pt" data-name="Nit Punto" name="nit_con_pt" is-data="4,25,1" type="text" >
+				          <label for="nit_con_pt">Nit Punto: </label>
+				        </div>
+				        <div class="input-field center-align col s6">
+				          <input id="res_con_pt" data-name="Responsable" name="res_con_pt" is-data="4,25,1" type="text" >
+				          <label for="res_con_pt">Responsable: </label>
+				        </div>
+				        <div class="input-field col s6">
+						    <select id="depto_con_pt">
+						      <option value="">Seleccionar..</option>
+						    </select>
+						    <label>Departamento: </label>
+						</div>
+						<div class="input-field col s6">
+						    <select id="ciudad_con_pt">
+						      <option value="">Seleccionar..</option>
+						    </select>
+						    <label>Ciudad: </label>
+						</div>
+						<div class="input-field col s6">
+						    <select id="circuito_con_pt">
+						      <option value="">Seleccionar..</option>
+						    </select>
+						    <label>Circuito: </label>
+						</div>
+						<div class="input-field col s6">
+						    <select id="ruta_con_pt">
+						      <option value="">Seleccionar..</option>
+						    </select>
+						    <label>Ruta: </label>
+						</div>
+						<div class="input-field col s12">
+						    <label>Cerca de mí: </label><br>
+							<p id="range" class="range-field col s12">
+						    	<input type="range" id="pt_cerca" value="0" min="0" max="2000" />
+						    </p>
+						</div>
+		            </div>
+		            <button id="can_co" class="waves-effect waves-light btn red darken-1 but"><i class="tiny material-icons right">clear</i> Cancelar</button>
+		            <button type="submit" id="send_co" class="waves-effect waves-light btn blue darken-3 but"><i class="material-icons right">search</i> Consultar</button>
+		        </div>
+		        </form>
+		       </div>
+		  </div>
+		</div>
+		
+		<div class="row" id="info_puntos" style="display:none;">
+            <div class="col-md-12">
+              <table id="t_report_puntos" class="striped centered">
+                <thead>
+                  <tr>
+                    <th>ID POS</th>
+                    <th>RAZON SOCIAL</th>
+                    <th class="all"></th>
+                  </tr>
+                </thead>
+              </table><br>
+              <div class="center-align">
+              	<button class="waves-effect waves-light btn red darken-1 but" id="bck_bt"><i class="material-icons right">replay</i>Volver</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Declaracion de las ventanas modales -->
+          
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h5>¿Desea cancelar la venta?</h5>
+            </div>
+            <div class="modal-footer">
+            	<div class="center-align">
+            		<button id="cl_mod" class="btn blue darken-3">Aceptar</button>
+             		<a href="#!" class="modal-action modal-close btn red darken-1">Cancelar</a>
+            	</div>
+            </div>
+          </div>
+          <div id="modalcf" class="modal">
+            <div class="modal-content">
+              <h5>¿Esta seguro de realizar la venta?</h5>
+            </div>
+            <div class="modal-footer">
+            	<div class="center-align">
+            		<button id="cf_vt" class="btn blue darken-3">Continuar</button>
+              		<a id="cl_mod" class=" modal-action modal-close btn red darken-1">Cancelar</a>
+            	</div>
+            </div>
+          </div>
+          <div id="modal_v" class="modal">
+            <div class="modal-content">
+              <h5><span id="titu"></span></h5>
+              <p><span id="cont"></span></p>
+            </div>
+            <div class="modal-footer">
+            	<div class="center-align">
+            		<button id="sv_vt" class="btn blue darken-3">Aceptar</button>
+              		<a href="#!" class="modal-action modal-close btn red darken-1">Cancelar</a>
+            	</div>	
+            </div>
+          </div>
+          <div id="modal_v_detail" class="modal">
+            <div class="modal-content">
+              <h5><span id="titu_d"></span></h5>
+              <p><span id="cont_d"></span></p>
+            </div>
+            <div class="modal-footer">
+            	<div class="center-align">
+            		<button id="ct_vt" class="btn blue darken-3">Continuar</button>
+            	</div>
+            </div>
+          </div>
+          <div id="modal_vf_detail" class="modal">
+            <div class="modal-content">
+              <h5><span id="tit_d"></span></h5>
+              <p><span id="con_d"></span></p>
+            </div>
+            <div class="modal-footer">
+            	<div class="center-align">
+            		<button id="cfr_vt" class="btn blue darken-3">Continuar</button>
+              		<a href="#!" class="modal-action modal-close btn red darken-1">Cancelar</a>
+            	</div>
+            </div>
+          </div>
+          <div id="modal_tot" class="modal">
+            <div class="modal-content">
+              <h5><span id="tit_t"></span></h5>
+              <p><span id="con_t"></span></p>
+            </div>
+            <div class="modal-footer">
+            	<div class="center-align">
+            		<button id="cfr_tot" class="btn blue darken-3">Aceptar</button>
+            	</div>
+            </div>
+          </div>
+          <!-- Fin ventanas modales -->
+          </div>
+		
+<!--Import jQuery before materialize.js-->
+	  <script type="text/javascript" src="../../main/js/main.js"></script>
+      <script type="text/javascript" src="../../main/css/datatables/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="../../main/js/materialize.min.js"></script>
+      <script type="text/javascript" src="../../main/js/notifIt.js"></script>
+      <script type="text/javascript">
+      $(document).ready(function() {
+        $(".button-collapse").sideNav();
+      })
+      </script>
+    </body>
+  </html>
+    
